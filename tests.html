@@ -1,0 +1,110 @@
+
+[0m[0m
+[0m  sexpressions[0m
+  [32m  ✓[0m[90m should allow to call js functions [0m
+  [32m  ✓[0m[90m should allow to use attribute access notation as function name [0m
+  [32m  ✓[0m[90m should allow to use attribute access notation as function argument [0m
+
+[0m  lambdas[0m
+  [32m  ✓[0m[90m should allow to define anonymous functions and call them from js [0m
+  [32m  ✓[0m[90m should allow to define anonymous functions and use them in oia [0m
+  [32m  ✓[0m[90m should allow to define named anonymous functions and call them recursively [0m
+
+[0m  interoperability[0m
+  [32m  ✓[0m[90m should allow to call js within oia [0m
+  [32m  ✓[0m[90m should allow to pass a oia fn as a js callback [0m
+
+[0m  local bindings and lexical scope[0m
+  [32m  ✓[0m[90m should allow to define local bindings in a let form and ensure proper lexical scope [0m
+
+[0m  truthiness[0m
+  [32m  ✓[0m[90m should have truthy return false only for boolean false, nil (and js null and undefined) [0m
+
+[0m  logical operators[0m
+  [32m  ✓[0m[90m should be consistent with definition of truthiness [0m
+  [32m  ✓[0m[90m should short circuit [0m
+
+[0m  equality[0m
+  [32m  ✓[0m[90m should operate on deep data structures [0m
+
+[0m  flow control[0m
+  [32m  ✓[0m[90m should allow branching consistently with definition of truthiness [0m
+  [32m  ✓[0m[90m should have cond be consistent with definition of truthiness [0m
+  [32m  ✓[0m[90m should have cond short circuit [0m
+
+[0m  data literals[0m
+  [32m  ✓[0m[90m should allow to create lists [0m
+  [32m  ✓[0m[90m should allow to create hash maps [0m
+  [32m  ✓[0m[90m should allow to create hash maps and evaluate forms [0m
+  [32m  ✓[0m[90m should allow to create deeply nested data structures [0m
+  [32m  ✓[0m[90m should allow to create js arrays [0m
+  [32m  ✓[0m[90m should allow to create js objects [0m
+  [32m  ✓[0m[90m should allow to create nested js objects [0m
+
+[0m  recursion[0m
+  [31m  1) should allow to express simple recursion[0m
+  [31m  2) should allow to recur using loop/recur without blowing the stack[0m
+
+[0m  keywords[0m
+  [32m  ✓[0m[90m should be usable in collections [0m
+  [32m  ✓[0m[90m should evaluate to themselves [0m
+  [32m  ✓[0m[90m should evaluate as keys to get values from collections [0m
+
+[0m  arity[0m
+  [31m  3) should allow calling functions without arity constraints, as in js[0m
+  [31m  4) should allow to define functions with multiple arities[0m
+  [32m  ✓[0m[90m should allow to define named anonymous functions with multiple arities and refer to the name within the body [0m
+  [31m  5) should fallback to max arity in case supplied arguments do not match the specified arities[0m
+  [36m  - should allow to define functions with optional arguments[0m
+
+[0m  dot notation[0m
+  [32m  ✓[0m[90m should allow to use dot notation to invoke methods on JavaScript objects [0m
+
+[0m  chaining and doto[0m
+  [32m  ✓[0m[90m should allow to use JavaScript chained APIs [0m
+  [32m  ✓[0m[90m should allow to repeatedly call methods on a JavaScript object [0m
+
+[0m  threading[0m
+  [31m  6) should allow to thread first a value through a sequence of computations[0m
+  [31m  7) should allow to thread last a value through a sequence of computations[0m
+
+[0m  math operations[0m
+  [32m  ✓[0m[90m should allow to add, subtract, multiply, divide a sequence of numbers and compute the modulo of two numbers [0m
+  [32m  ✓[0m[90m should allow to compare sequences of numbers [0m
+
+[0m  continuations[0m
+  [31m  8) should allow to write asynchronous code in a synchronous fashion[0m
+
+[0m  apply[0m
+  [32m  ✓[0m[90m should call a function given a list of arguments supplied as a collection [0m
+
+[0m  bind[0m
+  [31m  9) should return a function with this set to the provided object[0m
+
+[0m  multimethods[0m
+  [31m  10) should allow to define functions that dispatch according to the result of the evaluation of another function[0m
+
+[0m  cursors[0m
+  [36m  - should allow to define reference types with read and write callbacks[0m
+
+[0m  exceptions[0m
+  [31m  11) should allow to try expressions and catch exceptions[0m
+  [31m  12) should allow to throw exceptions[0m
+
+[0m  this and fnth[0m
+  [31m  13) should handle binding this fn-wise correctly from within IIFN[0m
+  [32m  ✓[0m[90m should allow a shorthand notation for defining a fn bound to the enclosing this, both named and unnamed [0m
+
+[0m  str[0m
+  [32m  ✓[0m[90m should allow to concatenate strings and literals [0m
+
+[0m  destructuring[0m
+  [31m  14) should destructure nested immutable data structures in let forms[0m
+  [32m  ✓[0m[90m should destructure nested JS data structures in let forms [0m
+  [31m  15) should destructure nested immutable data structures in loop forms[0m
+  [31m  16) should destructure nested JS data structures in loop forms[0m
+
+
+[92m [0m[32m 36 passing[0m[90m (35ms)[0m
+[36m [0m[36m 2 pending[0m
+
