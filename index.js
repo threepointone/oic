@@ -1,4 +1,4 @@
-var csp = require('js-csp');
+// var csp = require('js-csp');
 
 oia( 
   let [xf 
@@ -9,13 +9,13 @@ oia(
   (prn (seq [1 2 3 4 5] xf)));
 
 
-oia(let [x (gn [] (yield 123))](prn(.next (x))));
+// oia(let [x (gn [] (yield 123))](prn(.next (x))));
 
-oia(prn csp)
+// oia(prn csp)
 
-function* xyz(){
-	yield 123
-}
+// function* xyz(){
+// 	yield 123
+// }
 
 
 // (let [c (chan)]

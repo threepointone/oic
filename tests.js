@@ -1844,6 +1844,8 @@ describe('multimethods', function () {
         }()).to.eql('Fred');
     });
 });
+describe('sequences', function () {
+});
 describe('cursors', function () {
     it('should allow to define reference types with read and write callbacks');
 }    // , function() {

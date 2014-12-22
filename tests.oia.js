@@ -531,6 +531,8 @@ describe("multimethods", function() {
 
 });
 
+describe("sequences", function(){});
+
 describe("cursors", function() {
 
   it("should allow to define reference types with read and write callbacks");
