@@ -9,12 +9,12 @@ describe('sexpressions', function () {
         var f0 = function () {
             return 1;
         };
-        var f1 = function (a$2) {
-            return a$2;
+        var f1 = function (a) {
+            return a;
         };
-        var f2 = function (a$2, b) {
+        var f2 = function (a, b) {
             return [
-                a$2,
+                a,
                 b
             ];
         };
@@ -50,14 +50,14 @@ describe('sexpressions', function () {
                 }
             };
         var foo1 = {
-                bar: function (a$2) {
-                    return a$2;
+                bar: function (a) {
+                    return a;
                 }
             };
         var foo2 = {
-                bar: function (a$2, b) {
+                bar: function (a, b) {
                     return [
-                        a$2,
+                        a,
                         b
                     ];
                 }
@@ -71,16 +71,16 @@ describe('sexpressions', function () {
             };
         var goo1 = {
                 bar: {
-                    baz: function (a$2) {
-                        return a$2;
+                    baz: function (a) {
+                        return a;
                     }
                 }
             };
         var goo2 = {
                 bar: {
-                    baz: function (a$2, b) {
+                    baz: function (a, b) {
                         return [
-                            a$2,
+                            a,
                             b
                         ];
                     }
@@ -138,16 +138,16 @@ describe('sexpressions', function () {
     it('should allow to use attribute access notation as function argument', function () {
         var goo1 = {
                 bar: {
-                    baz: function (a$2) {
-                        return a$2;
+                    baz: function (a) {
+                        return a;
                     }
                 }
             };
         var goo2 = {
                 bar: {
-                    baz: function (a$2, b) {
+                    baz: function (a, b) {
                         return [
-                            a$2,
+                            a,
                             b
                         ];
                     }
@@ -155,9 +155,9 @@ describe('sexpressions', function () {
             };
         var goo3 = {
                 bar: {
-                    baz: function (a$2, b, c) {
+                    baz: function (a, b, c) {
                         return [
-                            a$2,
+                            a,
                             b,
                             c
                         ];
@@ -197,7 +197,7 @@ describe('sexpressions', function () {
 });
 describe('lambdas', function () {
     it('should allow to define anonymous functions and call them from js', function () {
-        var f$2 = function () {
+        var f = function () {
                 var _$2 = require('oia');
                 return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                     // initialized oia.
@@ -206,7 +206,7 @@ describe('lambdas', function () {
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
-        expect(f$2(1)).to.eql(2);
+        expect(f(1)).to.eql(2);
     });
     it('should allow to define anonymous functions and use them in oia', function () {
         expect(function () {
@@ -312,13 +312,13 @@ describe('local bindings and lexical scope', function () {
                 // initialized oia.
                 return function () {
                     return function (v) {
-                        var a$2 = v;
+                        var a = v;
                         return function (v$2) {
                             var b = v$2;
                             return function () {
                                 return function (v$3) {
                                     var list$3 = v$3.list;
-                                    return list$3(a$2, b);
+                                    return list$3(a, b);
                                 }.call(this, require('oia'));
                             }.call(this);
                         }.call(this, 2);
@@ -335,20 +335,20 @@ describe('local bindings and lexical scope', function () {
                 // initialized oia.
                 return function () {
                     return function (v) {
-                        var a$2 = v;
+                        var a = v;
                         return function () {
                             return function (v$2) {
-                                var a$3 = v$2;
+                                var a$2 = v$2;
                                 return function (v$3) {
                                     var b = v$3;
                                     return function () {
                                         return function (v$4) {
                                             var list$3 = v$4.list;
-                                            return list$3(a$3, b);
+                                            return list$3(a$2, b);
                                         }.call(this, require('oia'));
                                     }.call(this);
-                                }.call(this, inc(a$3));
-                            }.call(this, inc(a$2));
+                                }.call(this, inc(a$2));
+                            }.call(this, inc(a));
                         }.call(this);
                     }.call(this, 0);
                 }.call(this).toJS();
@@ -364,28 +364,28 @@ describe('local bindings and lexical scope', function () {
                 // initialized oia.
                 return function () {
                     return function (v) {
-                        var a$2 = v;
+                        var a = v;
                         return function (v$2) {
                             var b = v$2;
                             return function (v$3) {
                                 var e = v$3;
                                 (function () {
                                     return function (v$4) {
-                                        var a$3 = v$4;
+                                        var a$2 = v$4;
                                         return function (v$5) {
                                             var b$2 = v$5;
-                                            return a$3;
+                                            return a$2;
                                         }.call(this, inc(b));
-                                    }.call(this, inc(a$2));
+                                    }.call(this, inc(a));
                                 }.call(this));
                                 return function () {
                                     return function (v$4) {
                                         var list$3 = v$4.list;
-                                        return list$3(a$2, b, e);
+                                        return list$3(a, b, e);
                                     }.call(this, require('oia'));
                                 }.call(this);
                             }.call(this, keyword('e'));
-                        }.call(this, inc(a$2));
+                        }.call(this, inc(a));
                     }.call(this, c.d);
                 }.call(this);
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
@@ -1186,7 +1186,7 @@ describe('data literals', function () {
 });
 describe('recursion', function () {
     it('should allow to express simple recursion', function () {
-        var f$2 = function () {
+        var f = function () {
                 var _$2 = require('oia');
                 return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                     // initialized oia.
@@ -1231,10 +1231,10 @@ describe('recursion', function () {
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
-        expect(f$2(20)).to.eql(6765);
+        expect(f(20)).to.eql(6765);
     });
     it('should allow to recur using loop/recur without blowing the stack', function () {
-        var f$2 = function () {
+        var f = function () {
                 var _$2 = require('oia');
                 return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                     // initialized oia.
@@ -1244,7 +1244,7 @@ describe('recursion', function () {
                             do {
                                 res = function () {
                                     return function (v) {
-                                        var a$2 = v;
+                                        var a = v;
                                         return function (v$2) {
                                             var b = v$2;
                                             return function (v$3) {
@@ -1258,19 +1258,19 @@ describe('recursion', function () {
                                                                 }.call(this, v$4);
                                                             }.call(this, require('oia'));
                                                         }.call(this)) {
-                                                        return a$2;
+                                                        return a;
                                                     }
                                                     return {
                                                         _oia_recur: true,
                                                         _oia_vals: [
                                                             b,
-                                                            a$2 + b,
+                                                            a + b,
                                                             inc(iter)
                                                         ]
                                                     };
                                                 }.call(this);
                                             }(res._oia_vals === undefined ? 0 : res._oia_vals[0 + 1 + 1]);
-                                        }(res._oia_vals === undefined ? inc(a$2) : res._oia_vals[0 + 1]);
+                                        }(res._oia_vals === undefined ? inc(a) : res._oia_vals[0 + 1]);
                                     }(res._oia_vals === undefined ? 0 : res._oia_vals[0]);
                                     ;
                                 }();
@@ -1280,8 +1280,8 @@ describe('recursion', function () {
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
-        expect(f$2(20)).to.eql(6765);
-        expect(f$2(500)).to.eql(1.394232245616977e+104);
+        expect(f(20)).to.eql(6765);
+        expect(f(500)).to.eql(1.394232245616977e+104);
     });
 });
 describe('keywords', function () {
@@ -1338,8 +1338,8 @@ describe('arity', function () {
                 var _$2 = require('oia');
                 return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                     // initialized oia.
-                    return function foo$3(a$2) {
-                        return str('Hello ', a$2);
+                    return function foo$3(a) {
+                        return str('Hello ', a);
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
@@ -1353,20 +1353,20 @@ describe('arity', function () {
                     // initialized oia.
                     return function foo$3() {
                         var fnmap = {
-                                1: function (a$3) {
-                                    return str('Hello ', a$3);
+                                1: function (a$2) {
+                                    return str('Hello ', a$2);
                                 },
-                                2: function (a$3, b) {
-                                    return str('There ', a$3, ' ', b);
+                                2: function (a$2, b) {
+                                    return str('There ', a$2, ' ', b);
                                 }
                             };
                         var max_arity = 0;
-                        for (var a$2 in fnmap) {
-                            max_arity = a$2 > max_arity ? a$2 : max_arity;
+                        for (var a in fnmap) {
+                            max_arity = a > max_arity ? a : max_arity;
                         }
                         fnmap[null] = fnmap[max_arity];
-                        var f$2 = fnmap[arguments.length] || fnmap[null];
-                        return f$2.apply(this, arguments);
+                        var f = fnmap[arguments.length] || fnmap[null];
+                        return f.apply(this, arguments);
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
@@ -1374,7 +1374,7 @@ describe('arity', function () {
         expect(foo$2(1, 2)).to.eql('There 1 2');
     });
     it('should allow to define named anonymous functions with multiple arities and refer to the name within the body', function () {
-        var f$2 = function () {
+        var f = function () {
                 var _$2 = require('oia');
                 return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                     // initialized oia.
@@ -1388,17 +1388,17 @@ describe('arity', function () {
                                 }
                             };
                         var max_arity = 0;
-                        for (var a$2 in fnmap) {
-                            max_arity = a$2 > max_arity ? a$2 : max_arity;
+                        for (var a in fnmap) {
+                            max_arity = a > max_arity ? a : max_arity;
                         }
                         fnmap[null] = fnmap[max_arity];
-                        var f$3 = fnmap[arguments.length] || fnmap[null];
-                        return f$3.apply(this, arguments);
+                        var f$2 = fnmap[arguments.length] || fnmap[null];
+                        return f$2.apply(this, arguments);
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
-        expect(f$2()).to.eql('Hello world!');
-        expect(f$2('yellow')).to.eql('Hello yellow!');
+        expect(f()).to.eql('Hello world!');
+        expect(f('yellow')).to.eql('Hello yellow!');
     });
     it('should fallback to max arity in case supplied arguments do not match the specified arities', function () {
         var foo$2 = function () {
@@ -1407,20 +1407,20 @@ describe('arity', function () {
                     // initialized oia.
                     return function foo$3() {
                         var fnmap = {
-                                1: function (a$3) {
-                                    return str('Hello ', a$3);
+                                1: function (a$2) {
+                                    return str('Hello ', a$2);
                                 },
-                                2: function (a$3, b) {
-                                    return str('There ', a$3, ' ', b);
+                                2: function (a$2, b) {
+                                    return str('There ', a$2, ' ', b);
                                 }
                             };
                         var max_arity = 0;
-                        for (var a$2 in fnmap) {
-                            max_arity = a$2 > max_arity ? a$2 : max_arity;
+                        for (var a in fnmap) {
+                            max_arity = a > max_arity ? a : max_arity;
                         }
                         fnmap[null] = fnmap[max_arity];
-                        var f$2 = fnmap[arguments.length] || fnmap[null];
-                        return f$2.apply(this, arguments);
+                        var f = fnmap[arguments.length] || fnmap[null];
+                        return f.apply(this, arguments);
                     };
                 }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
             }();
@@ -1431,21 +1431,21 @@ describe('arity', function () {
 });
 describe('dot notation', function () {
     it('should allow to use dot notation to invoke methods on JavaScript objects', function () {
-        var a$2 = {
+        var a = {
                 bar: function (x$2) {
                     return x$2 * 2;
                 }
             };
         var b = {
                 foo: function (x$2) {
-                    return a$2;
+                    return a;
                 }
             };
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
-                return a$2.bar(2);
+                return a.bar(2);
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }()).to.eql(4);
         expect(function () {
@@ -1471,12 +1471,12 @@ describe('chaining and doto', function () {
                 return self;
             };
         };
-        var a$2 = new A();
+        var a = new A();
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
-                return a$2.foo(1).bar(2).v;
+                return a.foo(1).bar(2).v;
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }()).to.eql('init foo called with 1 bar called with 2 ');
     });
@@ -1495,15 +1495,15 @@ describe('chaining and doto', function () {
                 return self.foo + ' ' + self.bar;
             };
         };
-        var a$2 = new A();
+        var a = new A();
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
                 return function () {
-                    a$2.setFoo('a');
-                    a$2.setBar('b');
-                    return a$2;
+                    a.setFoo('a');
+                    a.setBar('b');
+                    return a;
                 }.call(this);
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }().getFooBar()).to.eql('a b');
@@ -1511,19 +1511,19 @@ describe('chaining and doto', function () {
 });
 describe('threading', function () {
     it('should allow to thread first a value through a sequence of computations', function () {
-        var a$2 = 1;
+        var a = 1;
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
-                return dec(inc(inc(a$2)));
+                return dec(inc(inc(a)));
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }()).to.eql(2);
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
-                return add(add(a$2, 2), 3);
+                return add(add(a, 2), 3);
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }()).to.eql(6);
     }    // expect(
@@ -1531,19 +1531,19 @@ describe('threading', function () {
          //   ).to.eql(1);
 );
     it('should allow to thread last a value through a sequence of computations', function () {
-        var a$2 = 1;
+        var a = 1;
         expect(function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
                 return first(map(function (x$2) {
                     return inc(x$2);
-                }, conj(function () {
+                }, function () {
                     return function (v) {
                         var list$3 = v.list;
                         return list$3();
                     }.call(this, require('oia'));
-                }.call(this), a$2)));
+                }.call(this).push(a)));
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
         }()).to.eql(2);
     });
@@ -1675,25 +1675,25 @@ describe('math operations', function () {
 });
 describe('continuations', function () {
     it('should allow to write asynchronous code in a synchronous fashion', function () {
-        var foo$2 = function (x$2, cb$2) {
+        var foo$2 = function (x$2, cb) {
             var y = x$2 * 2;
-            cb$2(y);
+            cb(y);
         };
-        var bar = function (x$2, cb$2) {
+        var bar = function (x$2, cb) {
             var y = x$2 + 1;
-            cb$2(y);
+            cb(y);
         };
-        var baz = function (x$2, cb$2) {
+        var baz = function (x$2, cb) {
             var y = x$2 + 1;
             var z = x$2 * 2;
-            cb$2(y, z);
+            cb(y, z);
         };
         (function () {
             var _$2 = require('oia');
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
-                return foo$2(2, function (a$2) {
-                    bar(a$2, function (b) {
+                return foo$2(2, function (a) {
+                    bar(a, function (b) {
                         baz(b, function (c, d) {
                             expect(b).to.eql(5);
                             expect(c).to.eql(6);
@@ -1712,14 +1712,12 @@ describe('continuations', function () {
             return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
                 // initialized oia.
                 return function () {
-                    defn(fake_request, function () {
-                        return function (v) {
-                            var list$3 = v.list;
-                            return list$3(url, cb);
-                        }.call(this, require('oia'));
-                    }.call(this), setTimeout(function () {
-                        return cb(1234);
-                    }, 1000));
+                    function fake_request(url, cb) {
+                        return setTimeout(function () {
+                            return cb(1234);
+                        }, 1000);
+                    }
+                    ;
                     fake_request('fakeurl', function (data) {
                         log += 'Response received: ' + data + '.';
                         expect(log).to.eql('Request sent. Response received: 1234.');
@@ -1755,42 +1753,43 @@ describe('apply', function () {
 });
 describe('bind', function () {
     it('should return a function with this set to the provided object', function () {
-        (function () {
-            var _$2 = require('oia');
-            return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
-                // initialized oia.
-                return function () {
-                    def(a, function () {
+        var res = function () {
+                var _$2 = require('oia');
+                return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
+                    // initialized oia.
+                    return function () {
                         return function (v) {
-                            var hash_map$2 = v.hash_map;
-                            return hash_map$2(keyword('a'), 1, keyword('b'), 2);
-                        }.call(this, require('oia'));
-                    }.call(this));
-                    return defn(f, function () {
-                        return function (v) {
-                            var list$3 = v.list;
-                            return list$3();
-                        }.call(this, require('oia'));
-                    }.call(this), get(this, keyword('a')));
-                }.call(this);
-            }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
-        }());
-        expect(function () {
-            var _$2 = require('oia');
-            return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
-                // initialized oia.
-                return f.bind(a)();
-            }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
-        }()).to.eql(1);
-        expect(function () {
-            var _$2 = require('oia');
-            return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
-                // initialized oia.
-                return function () {
-                    return get(this, keyword('a'));
-                }.bind(a)();
-            }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
-        }()).to.eql(1);
+                            var a = v;
+                            return function (v$2) {
+                                var f = v$2;
+                                return function (v$3) {
+                                    var f1 = v$3;
+                                    return function (v$4) {
+                                        var f2 = v$4;
+                                        return [
+                                            f1(),
+                                            f2()
+                                        ];
+                                    }.call(this, function () {
+                                        return get(this, keyword('a'));
+                                    }.bind(a));
+                                }.call(this, f.bind(a));
+                            }.call(this, function () {
+                                return get(this, keyword('a'));
+                            });
+                        }.call(this, function () {
+                            return function (v) {
+                                var hash_map$2 = v.hash_map;
+                                return hash_map$2(keyword('a'), 1, keyword('b'), 2);
+                            }.call(this, require('oia'));
+                        }.call(this));
+                    }.call(this);
+                }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
+            }();
+        expect(res).to.eql([
+            1,
+            1
+        ]);
     });
 });
 describe('multimethods', function () {
@@ -1871,7 +1870,7 @@ describe('exceptions', function () {
                     try {
                         foo.bar;
                     } catch (e) {
-                        expect(e).to.be.a(ReferenceError);
+                        expect(e instanceof ReferenceError).to.eql(true);
                     }
                 }.call(this);
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
@@ -1886,7 +1885,7 @@ describe('exceptions', function () {
                     try {
                         ret = foo.bar;
                     } catch (e) {
-                        ret = expect(e).to.be.a(ReferenceError);
+                        ret = expect(e instanceof ReferenceError).to.eql(true);
                     } finally {
                         side_effect = true;
                     }
@@ -1907,28 +1906,25 @@ describe('exceptions', function () {
                     }.call(this);
                 };
             }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
-        }()).to.throwError();
+        }()).to.throw();
     });
 });
 describe('this and fnth', function () {
     it('should handle binding this fn-wise correctly from within IIFN', function () {
-        (function () {
-            var _$2 = require('oia');
-            return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
-                // initialized oia.
-                return defn(somefn, function () {
-                    return function (v) {
-                        var list$3 = v.list;
-                        return list$3();
-                    }.call(this, require('oia'));
-                }.call(this), function () {
-                    return function (v) {
-                        var a$2 = v;
-                        return this.someprop;
-                    }.call(this, 1);
-                }.call(this));
-            }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
-        }());
+        var somefn = function () {
+                var _$2 = require('oia');
+                return function (truthy, falsey, not, equals, eq, neq, add, sub, mul, div, mod, lt, gt, leq, geq, prn, str, list$2, hash_map, keyword, inc, dec, get, first, rest, reduce, transformer, Reduced, iterator, push, merge, transduce, seq, toArray, toObj, toIter, into, compose, map, filter, remove, cat, mapcat, keep, dedupe, take, takeWhile, drop, dropWhile, partition, partitionBy, range, protocols, LazyTransformer) {
+                    // initialized oia.
+                    return function () {
+                        return function () {
+                            return function (v) {
+                                var a = v;
+                                return this.someprop;
+                            }.call(this, 1);
+                        }.call(this);
+                    };
+                }(_$2.truthy, _$2.falsey, _$2.not, _$2.equals, _$2.eq, _$2.neq, _$2.add, _$2.sub, _$2.mul, _$2.div, _$2.mod, _$2.lt, _$2.gt, _$2.leq, _$2.geq, _$2.prn, _$2.str, _$2.list, _$2.hash_map, _$2.keyword, _$2.inc, _$2.dec, _$2.get, _$2.first, _$2.rest, _$2.reduce, _$2.transformer, _$2.Reduced, _$2.iterator, _$2.push, _$2.merge, _$2.transduce, _$2.seq, _$2.toArray, _$2.toObj, _$2.toIter, _$2.into, _$2.compose, _$2.map, _$2.filter, _$2.remove, _$2.cat, _$2.mapcat, _$2.keep, _$2.dedupe, _$2.take, _$2.takeWhile, _$2.drop, _$2.dropWhile, _$2.partition, _$2.partitionBy, _$2.range, _$2.protocols, _$2.LazyTransformer);
+            }();
         var bar = { someprop: 1 };
         var baz = {};
         expect(function () {
@@ -1963,12 +1959,12 @@ describe('this and fnth', function () {
                     this.jee = 1;
                     return function () {
                         return function (v) {
-                            var a$2 = v;
+                            var a = v;
                             return function (v$2) {
                                 var b = v$2;
                                 return function (v$3) {
                                     var c = v$3;
-                                    fn1 = a$2;
+                                    fn1 = a;
                                     fn2 = b;
                                     return fn3 = c;
                                 }.call(this, function cfn() {
@@ -2008,7 +2004,7 @@ describe('destructuring', function () {
                     // initialized oia.
                     return function () {
                         return function (v) {
-                            var f$2 = function () {
+                            var f = function () {
                                     return function (v$2) {
                                         return function (v$3) {
                                             var first$2 = v$3.first;
@@ -2016,7 +2012,7 @@ describe('destructuring', function () {
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var a$2 = f$2;
+                            var a = f;
                             var r$2 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
@@ -2025,7 +2021,7 @@ describe('destructuring', function () {
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var f$3 = function () {
+                            var f$2 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
                                             var first$2 = v$3.first;
@@ -2033,7 +2029,7 @@ describe('destructuring', function () {
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var b = f$3;
+                            var b = f$2;
                             var r$3 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
@@ -2042,7 +2038,7 @@ describe('destructuring', function () {
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var f$4 = function () {
+                            var f$3 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
                                             var first$2 = v$3.first;
@@ -2050,20 +2046,37 @@ describe('destructuring', function () {
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
+                            var f$4 = function () {
+                                    return function (v$2) {
+                                        return function (v$3) {
+                                            var get$2 = v$3.get;
+                                            return get$2(f$3, keyword('c'));
+                                        }.call(this, v$2);
+                                    }.call(this, require('oia'));
+                                }.call(this);
+                            var c = f$4;
                             var f$5 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
                                             var get$2 = v$3.get;
-                                            return get$2(f$4, keyword('c'));
+                                            return get$2(f$3, keyword('d'));
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var c = f$5;
                             var f$6 = function () {
                                     return function (v$2) {
                                         return function (v$3) {
-                                            var get$2 = v$3.get;
-                                            return get$2(f$4, keyword('d'));
+                                            var first$2 = v$3.first;
+                                            return first$2(f$5);
+                                        }.call(this, v$2);
+                                    }.call(this, require('oia'));
+                                }.call(this);
+                            var d = f$6;
+                            var r$4 = function () {
+                                    return function (v$2) {
+                                        return function (v$3) {
+                                            var rest$2 = v$3.rest;
+                                            return rest$2(f$5);
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
@@ -2071,34 +2084,17 @@ describe('destructuring', function () {
                                     return function (v$2) {
                                         return function (v$3) {
                                             var first$2 = v$3.first;
-                                            return first$2(f$6);
-                                        }.call(this, v$2);
-                                    }.call(this, require('oia'));
-                                }.call(this);
-                            var d = f$7;
-                            var r$4 = function () {
-                                    return function (v$2) {
-                                        return function (v$3) {
-                                            var rest$2 = v$3.rest;
-                                            return rest$2(f$6);
-                                        }.call(this, v$2);
-                                    }.call(this, require('oia'));
-                                }.call(this);
-                            var f$8 = function () {
-                                    return function (v$2) {
-                                        return function (v$3) {
-                                            var first$2 = v$3.first;
                                             return first$2(r$4);
                                         }.call(this, v$2);
                                     }.call(this, require('oia'));
                                 }.call(this);
-                            var e = f$8;
+                            var e = f$7;
                             return function (v$2) {
-                                var f$9 = v$2;
+                                var f$8 = v$2;
                                 return eq(function () {
                                     return function (v$3) {
                                         var list$3 = v$3.list;
-                                        return list$3(a$2, b, c, d, e);
+                                        return list$3(a, b, c, d, e);
                                     }.call(this, require('oia'));
                                 }.call(this), function () {
                                     return function (v$3) {
@@ -2135,25 +2131,25 @@ describe('destructuring', function () {
                     // initialized oia.
                     return function () {
                         return function (v) {
-                            var f$2 = v[0];
-                            var a$2 = f$2;
+                            var f = v[0];
+                            var a = f;
                             var r$2 = v.slice(1);
-                            var f$3 = r$2[0];
-                            var b = f$3;
+                            var f$2 = r$2[0];
+                            var b = f$2;
                             var r$3 = r$2.slice(1);
-                            var f$4 = r$3[0];
-                            var f$5 = f$4['c'];
-                            var c = f$5;
-                            var f$6 = f$4['d'];
-                            var f$7 = f$6[0];
-                            var d = f$7;
-                            var r$4 = f$6.slice(1);
-                            var f$8 = r$4[0];
-                            var e = f$8;
+                            var f$3 = r$3[0];
+                            var f$4 = f$3['c'];
+                            var c = f$4;
+                            var f$5 = f$3['d'];
+                            var f$6 = f$5[0];
+                            var d = f$6;
+                            var r$4 = f$5.slice(1);
+                            var f$7 = r$4[0];
+                            var e = f$7;
                             return eq(function () {
                                 return function (v$2) {
                                     var list$3 = v$2.list;
-                                    return list$3(a$2, b, c, d, e);
+                                    return list$3(a, b, c, d, e);
                                 }.call(this, require('oia'));
                             }.call(this), function () {
                                 return function (v$2) {
@@ -2187,7 +2183,7 @@ describe('destructuring', function () {
                         do {
                             res = function () {
                                 return function (v) {
-                                    var f$2 = function () {
+                                    var f = function () {
                                             return function (v$2) {
                                                 return function (v$3) {
                                                     var first$2 = v$3.first;
@@ -2195,7 +2191,7 @@ describe('destructuring', function () {
                                                 }.call(this, v$2);
                                             }.call(this, require('oia'));
                                         }.call(this);
-                                    var a$2 = f$2;
+                                    var a = f;
                                     var r$2 = function () {
                                             return function (v$2) {
                                                 return function (v$3) {
@@ -2204,7 +2200,7 @@ describe('destructuring', function () {
                                                 }.call(this, v$2);
                                             }.call(this, require('oia'));
                                         }.call(this);
-                                    var f$3 = function () {
+                                    var f$2 = function () {
                                             return function (v$2) {
                                                 return function (v$3) {
                                                     var first$2 = v$3.first;
@@ -2212,7 +2208,7 @@ describe('destructuring', function () {
                                                 }.call(this, v$2);
                                             }.call(this, require('oia'));
                                         }.call(this);
-                                    var b = f$3;
+                                    var b = f$2;
                                     var r$3 = function () {
                                             return function (v$2) {
                                                 return function (v$3) {
@@ -2221,7 +2217,7 @@ describe('destructuring', function () {
                                                 }.call(this, v$2);
                                             }.call(this, require('oia'));
                                         }.call(this);
-                                    var f$4 = function () {
+                                    var f$3 = function () {
                                             return function (v$2) {
                                                 return function (v$3) {
                                                     var first$2 = v$3.first;
@@ -2229,20 +2225,20 @@ describe('destructuring', function () {
                                                 }.call(this, v$2);
                                             }.call(this, require('oia'));
                                         }.call(this);
-                                    var _$3 = f$4;
+                                    var _$3 = f$3;
                                     return function () {
                                         if (function () {
                                                 return function (v$2) {
                                                     return function (v$3) {
                                                         var truthy$2 = v$3.truthy;
-                                                        return truthy$2(gt(a$2, 3));
+                                                        return truthy$2(gt(a, 3));
                                                     }.call(this, v$2);
                                                 }.call(this, require('oia'));
                                             }.call(this)) {
                                             return eq(function () {
                                                 return function (v$2) {
                                                     var list$3 = v$2.list;
-                                                    return list$3(a$2, b);
+                                                    return list$3(a, b);
                                                 }.call(this, require('oia'));
                                             }.call(this), function () {
                                                 return function (v$2) {
@@ -2256,7 +2252,7 @@ describe('destructuring', function () {
                                             _oia_vals: [map(function () {
                                                     return function (v$2) {
                                                         var list$3 = v$2.list;
-                                                        return list$3(a$2, b, 3);
+                                                        return list$3(a, b, 3);
                                                     }.call(this, require('oia'));
                                                 }.call(this), inc)]
                                         };
@@ -2286,27 +2282,27 @@ describe('destructuring', function () {
                         do {
                             res = function () {
                                 return function (v) {
-                                    var f$2 = v[0];
-                                    var a$2 = f$2;
+                                    var f = v[0];
+                                    var a = f;
                                     var r$2 = v.slice(1);
-                                    var f$3 = r$2[0];
-                                    var b = f$3;
+                                    var f$2 = r$2[0];
+                                    var b = f$2;
                                     var r$3 = r$2.slice(1);
-                                    var f$4 = r$3[0];
-                                    var _$3 = f$4;
+                                    var f$3 = r$3[0];
+                                    var _$3 = f$3;
                                     return function () {
                                         if (function () {
                                                 return function (v$2) {
                                                     return function (v$3) {
                                                         var truthy$2 = v$3.truthy;
-                                                        return truthy$2(gt(a$2, 3));
+                                                        return truthy$2(gt(a, 3));
                                                     }.call(this, v$2);
                                                 }.call(this, require('oia'));
                                             }.call(this)) {
                                             return eq(function () {
                                                 return function (v$2) {
                                                     var list$3 = v$2.list;
-                                                    return list$3(a$2, b);
+                                                    return list$3(a, b);
                                                 }.call(this, require('oia'));
                                             }.call(this), function () {
                                                 return function (v$2) {
@@ -2320,7 +2316,7 @@ describe('destructuring', function () {
                                             _oia_vals: [map(function () {
                                                     return function (v$2) {
                                                         var list$3 = v$2.list;
-                                                        return list$3(a$2, b, 3);
+                                                        return list$3(a, b, 3);
                                                     }.call(this, require('oia'));
                                                 }.call(this), inc).toJS()]
                                         };

@@ -420,7 +420,7 @@ describe("threading", function() {
     
     var a = 1;
     expect(
-      oia (threadl a (conj []) (map (fn [x] (inc x))) first)
+      oia (threadl a (.push []) (map (fn [x] (inc x))) first)
       ).to.eql(2);
   });
 
@@ -483,7 +483,7 @@ describe("continuations", function() {
     
     var log = "";
     oia (do
-        (defn fake_request [url cb]
+        (fn fake_request [url cb]
          (setTimeout (fn [] (cb 1234)) 1000))
         
         (letc [data (fake_request "fakeurl")]
@@ -507,12 +507,14 @@ describe("apply", function() {
 describe("bind", function() {
 
   it("should return a function with this set to the provided object", function() {
-    
-    oia (do 
-        (def a {:a 1 :b 2})
-        (defn f [] (get this :a)))
-    expect(oia ((bind a f))).to.eql(1);
-    expect(oia ((bind a (fn [] (get this :a))))).to.eql(1);
+    var res = oia(let [
+      a {:a 1 :b 2} 
+      f (fn [] (get this :a))
+      f1 (bind a f)
+      f2 (bind a (fn [] (get this :a)))
+    ][$ (f1) (f2)])
+
+    expect(res).to.eql([1, 1]);
   });
 
 });
@@ -560,19 +562,17 @@ describe("exceptions", function() {
 
     
 
-    oia (try foo.bar (catch e (js expect(e).to.be.a(ReferenceError))));
+    oia (try foo.bar (catch e (js expect(e instanceof ReferenceError).to.eql(true))));
 
     var side_effect = false;
-    oia (try foo.bar (catch e (js expect(e).to.be.a(ReferenceError))) (finally (js side_effect = true)));
+    oia (try foo.bar (catch e (js expect(e instanceof ReferenceError).to.eql(true))) (finally (js side_effect = true)));
     expect(side_effect).to.eql(true);
 
   });
 
   it("should allow to throw exceptions", function() {
 
-    
-
-    expect(oia (fn [] (throw (Error "foo")))).to.throwError();
+    expect(oia (fn [] (throw (Error "foo")))).to.throw();
 
   });
 
@@ -584,7 +584,7 @@ describe("this and fnth", function() {
 
     
 
-    oia (defn somefn [] (let [a 1] this.someprop));
+    var somefn = oia (fn [] (let [a 1] this.someprop));
     var bar = {someprop: 1};
     var baz = {};
 
