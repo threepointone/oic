@@ -1,8 +1,9 @@
 sandbox:
-	 @./node_modules/.bin/sjs --module oia/macro -r index.js 
+	oia sandbox.js | node
 
 tests:
-	@./node_modules/.bin/sjs --module oia/macro -r tests.oia.js -o tests.js
-	@./node_modules/.bin/mocha tests.js
+	oia tests.js > tests.compiled.js
+	-./node_modules/.bin/mocha tests.compiled.js
+	rm tests.compiled.js
 
 .PHONY: sandbox tests

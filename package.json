@@ -2,19 +2,17 @@
   "name": "toia",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "sandbox.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make tests"
   },
-  "author": "",
+  "author": "Sunil Pai <threepointone@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "chai": "^1.10.0",
     "immutable": "^3.4.1",
-    "js-csp": "^0.3.2",
     "mocha": "^2.0.1",
     "regenerator": "^0.8.2",
-    "regeneratorify": "0.0.2",
-    "sweet.js": "^0.7.2"
+    "oia": "*"
   }
 }
