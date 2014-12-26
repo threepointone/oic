@@ -1,17 +1,24 @@
 // var x = 123;
 // var x = oia(fn[] 123);
-var x = oia(do
-	(def xf 
-    (compose 
-      (drop 20)
-      (map (fn [x] (mul x 3))) 
-      (filter (fn [x] (eq 0 (mod x 2)))) 
-      (take 10)))
+
+oia(do 
+	(prn (set :a :b :a 1 2 3 4 6 7 9)));
+
+// oia(do 
+// 	(def x (struct {:x 1 :y 2}))
+// 	(def y (.cursor x))
+// 	(def z (.update y (fn [] {:a true :b false})))
+// 	(prn (.cursor x) y z));
+
+// oia(do
+// 	(def xf 
+//     (compose 
+//       (drop 20)
+//       (map (fn [x] (mul x 3))) 
+//       (filter (fn [x] (eq 0 (mod x 2)))) 
+//       (take 10)))
   
-
-  (prn (seq (range 500) xf))
-
-);
+//   (prn (seq (range 500) xf)));
 
 // oia(let [x 123 y[:a :b :c] z nil](prn x y z));
 
