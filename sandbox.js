@@ -1,8 +1,16 @@
 // var x = 123;
 // var x = oia(fn[] 123);
 var x = oia(do
-	(prn (map [0 1 2 3 4 5 6 7 8 9] inc))
-	
+	(def xf 
+    (compose 
+      (drop 20)
+      (map (fn [x] (mul x 3))) 
+      (filter (fn [x] (eq 0 (mod x 2)))) 
+      (take 10)))
+  
+
+  (prn (seq (range 500) xf))
+
 );
 
 // oia(let [x 123 y[:a :b :c] z nil](prn x y z));
@@ -10,13 +18,13 @@ var x = oia(do
 
 
 // oia( 
-//   let [xf 
-//     (compose // some comment
-//     	(drop 20)
-//       (map (fn [x] (mul x 3))) 
-//       (filter (fn [x] (eq 0 (mod x 2)))) 
-//       (take 10))]
-//   (prn (seq (range 500) xf)));
+  // let [xf 
+  //   (compose // some comment
+  //   	(drop 20)
+  //     (map (fn [x] (mul x 3))) 
+  //     (filter (fn [x] (eq 0 (mod x 2)))) 
+  //     (take 10))]
+  // (prn (seq (range 500) xf)));
 
 // oia(prn (cond
 //   nil "Not going to return this"
