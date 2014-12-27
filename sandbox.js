@@ -1,8 +1,26 @@
+// oia(js <div>something { <span> and something from here </span>}</div>);
+
+
+// <div style ={{:width 200}}>
+// 	text and stuff
+// 	{(.map children (fn [child] <div className 'gambino'>{child}</div> ))}
+// 	<MyComponent key={1785} onClick={this.onClick}/>
+// </div>
+
+
+
+
+// <tile hidden true>
+// 	<product id 18767 />
+// 	<image src '/logo.png'/>	
+// 	<text family 'uber sans' size 12 value 'say whaaaat'/>
+// </tile>
+
 // var x = 123;
 // var x = oia(fn[] 123);
 
-oia(do 
-	(prn (set :a :b :a 1 2 3 4 6 7 9)));
+// oia(do 
+// 	(prn (set :a :b :a 1 2 3 4 6 7 9)));
 
 // oia(do 
 // 	(def x (struct {:x 1 :y 2}))
