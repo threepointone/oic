@@ -38,7 +38,7 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
     (fn [c query] 
       (go (gen [] 
         (yield (take (timeout (js Math.random()*200))))
-        (yield (put c [kind query]))))))
+        (yield (put c [$ kind query]))))))
 
   (def web1 (fake :web1))
   (def web2 (fake :web2))
@@ -64,7 +64,7 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
       (go (gen [] 
         (yield (put c 
           (yield (take 
-            (fastest query [$ web1 web2])))))))
+            (fastest query [$ video1 video2])))))))
       
       (go (gen []
         (def res [$])
@@ -75,7 +75,7 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
       sink))
   
   (go (gen []
-    (prn (yield (take (google 'clojure'))))))));
+    (prn (yield (take (google 'oia'))))))));
 
 
 
