@@ -420,7 +420,7 @@ describe("threading", function() {
     
     var a = 1;
     expect(
-      oia (threadl a (push []) (inc) first)
+      oia (threadl a (.push []) (inc) first)
       ).to.eql(2);
   });
 

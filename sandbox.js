@@ -1,3 +1,6 @@
+// oia(gen [] (yield take 123));
+
+
 // oia(do
 //   (def x (whilegen (lt x 100) (yieldall (dogen 123 nil)) ))
 //   (prn (into [] (compose (fn [a] a)) x))
@@ -37,8 +40,10 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
   (fn fake [kind] 
     (fn [c query] 
       (go (gen [] 
-        (yield (take (timeout (js Math.random()*200))))
-        (yield (put c [$ kind query]))))))
+        (def start (.now Date))
+        (yield (take (timeout (js Math.random()*2000))))
+        (def time (sub (.now Date) start))
+        (yield (put c [$ kind time]))))))
 
   (def web1 (fake :web1))
   (def web2 (fake :web2))
@@ -52,37 +57,43 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
       (.forEach replicas (fn [replica] (replica c query))) c))
 
   (fn google [query] 
-    (let [c (chan) t (timeout 100) sink (chan)]
+    (let [c (chan) t (timeout 1000) sink (chan)]
       (go (gen [] 
-        (yield (put c 
-          (yield (take 
-            (fastest query [$ web1 web2])))))))
+        (yield (put c (yield (take (fastest query [$ web1 web2])))))))
       (go (gen [] 
-        (yield (put c 
-          (yield (take 
-            (fastest query [$ image1 image2])))))))
+        (yield (put c (yield (take (fastest query [$ image1 image2])))))))
       (go (gen [] 
-        (yield (put c 
-          (yield (take 
-            (fastest query [$ video1 video2])))))))
-      
+        (yield (put c (yield (take (fastest query [$ video1 video2])))))))
+  
       (go (gen []
         (def res [$])
         (dotimes 3 
           (.push res (get (yield (alts [$ c t])) :value 'timed out')))
         (yield (put sink res))))
-
+      
       sink))
   
   (go (gen []
-    (prn (yield (take (google 'oia'))))))));
+    (prn (yield (take (google 'oia'))))
+    (prn (yield (take (google 'oia'))))
+    (prn (yield (take (google 'oia'))))
+    (prn (yield (take (google 'oia'))))
+    (prn (yield (take (google 'oia'))))
+  ))));
 
+
+    
+// var _ = require ('js-csp/lib/csp');
+
+// var c = _.chan();
 
 
 // _.go(function* () {
-//   for(var i = 0; i < 10; i++) {      
+//   var i =0;
+//   while(true) {      
+//        console.log("process one put", i);
 //     yield _.put(c, i);
-//    console.log("process one put", i);    
+
 //   }
 //   c.close()
 // });
@@ -109,16 +120,16 @@ oia(lets [go chan put take timeout alts] (require 'js-csp/lib/csp') (do
 
 
 
-// oia(do
-// 	(def xf 
-//     (compose 
-//       (drop 20)
-//       (map (fn [x] (mul x 3))) 
-//       (filter (fn [x] (eq 0 (mod x 2)))) 
-//       (take 10)))
+oia(do
+	(def xf 
+    (compose 
+      (drop 20)
+      (map (fn [x] (mul x 3))) 
+      (filter (fn [x] (eq 0 (mod x 2)))) 
+      (take 10)))
   
-//   (prn (seq (range 500) xf)));
-//   // oia(js <div>something { <span> and something from here </span>}</div>);
+  (prn (seq (range 500) xf)));
+// //   // oia(js <div>something { <span> and something from here </span>}</div>);
 
 
 // <div :style {:width 200}>
